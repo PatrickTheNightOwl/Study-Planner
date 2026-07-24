@@ -1,0 +1,120 @@
+body {
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+/* 1. Outer Navbar: Fixed bar spanning full viewport width */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000000;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* 2. Inner Container: Keeps content balanced and prevents extreme edge stretching */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* 4. Center Navigation Links */
+#nav-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+/* 5. Right-Side Auth Buttons */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Log In: Clean text link */
+.btn-login {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.btn-login:hover {
+  opacity: 1;
+}
+
+/* Sign Up: Prominent secondary accent button */
+.btn-signup {
+  background-color: #2563eb; /* Modern primary blue */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-signup:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-signup:active {
+  transform: scale(0.98);
+}
+#brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+#website-name {
+  text-align: center;
+  font-size: 30px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* 3. Brand / Logo Styling */
+#brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+}
+.website-logo {
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+}
+#website-name {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
