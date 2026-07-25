@@ -15,17 +15,20 @@ body {
 
 /* 2. Inner Container: Keeps content balanced and prevents extreme edge stretching */
 .nav-container {
+  position: relative; /* Acts as the anchor point */
   max-width: 1200px;
   margin: 0 auto;
   padding: 14px 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keeps brand on far left, auth on far right */
   align-items: center;
-  box-sizing: border-box;
 }
 
 /* 4. Center Navigation Links */
 #nav-list {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 32px;
