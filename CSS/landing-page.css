@@ -2,12 +2,20 @@ body {
   background-color: #ffffff;
   font-family: "Inter", sans-serif;
 }
+/* 1. Global Reset - Eliminates default browser margins around the screen edges */
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
 /* 1. Outer Navbar: Fixed bar spanning full viewport width */
 #navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
+  margin: 0;
   background-color: #000000;
   z-index: 1000;
   box-sizing: border-box;
@@ -120,4 +128,23 @@ body {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: -0.3px;
+}
+
+#hero-section {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+#slogan {
+  /* For text designing */
+  font-size: 36px;
+  font-weight: 700;
+}
+.secondary {
+  justify-content: center;
+}
+.cta-btn {
+  font-size: 22px;
+  width: 10%;
 }
