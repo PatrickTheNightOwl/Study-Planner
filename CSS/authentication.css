@@ -1,0 +1,93 @@
+body {
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center; /* Centers vertically */
+  justify-content: center; /* Centers horizontally (optional) */
+}
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+#auth-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Step 1: Round the corners of the element */
+  border-radius: 15px;
+
+  /* Step 2: Apply the shadow (X-offset, Y-offset, Blur, Spread, Color) */
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  width: 30vw;
+  height: 100vh;
+}
+
+#brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #ffffff;
+}
+.website-logo {
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+}
+#website-name {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  text-decoration: none;
+  color: #000000;
+}
+#slogan {
+  font-size: 22px;
+  font-weight: 500;
+}
+#caption {
+  color: #000000;
+  font-size: 22px;
+}
+#form {
+  width: 20vw;
+  color: #b4b4b4;
+}
+#input {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+#input:hover {
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+}
+#btn-signup {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: #2563eb; /* Modern primary blue */
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%;
+  min-height: 48px;
+}
+#btn-signup:hover {
+  background-color: #1d4ed8;
+  cursor: pointer;
+}
+#signup {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+}

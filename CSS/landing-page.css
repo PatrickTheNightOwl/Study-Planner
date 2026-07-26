@@ -98,24 +98,12 @@ body {
 .btn-signup:active {
   transform: scale(0.98);
 }
+
+/* Brand / Logo Styling */
 #brand {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-}
-#website-name {
-  text-align: center;
-  font-size: 30px;
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* 3. Brand / Logo Styling */
-#brand {
-  display: flex;
-  align-items: center;
   gap: 10px;
   color: #ffffff;
 }
@@ -125,9 +113,11 @@ body {
   object-fit: contain;
 }
 #website-name {
+  text-align: center;
   font-size: 30px;
   font-weight: 700;
   letter-spacing: -0.3px;
+  text-decoration: none;
 }
 
 #hero-section {
@@ -135,9 +125,12 @@ body {
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  background-image: url("../Assets/hero-section-background.png");
+  background-size: cover; /* Scales the image to completely fill the section */
+  background-position: center; /* Centers the backdrop image */
+  background-repeat: no-repeat; /* Prevents the image from tiling */
 }
 #slogan {
-  /* For text designing */
   font-size: 36px;
   font-weight: 700;
 }
