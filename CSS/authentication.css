@@ -4,6 +4,10 @@ body {
   display: flex;
   align-items: center; /* Centers vertically */
   justify-content: center; /* Centers horizontally (optional) */
+  background-image: url("../Assets/hero-section-background.png");
+  background-size: cover; /* Scales the image to completely fill the section */
+  background-position: center; /* Centers the backdrop image */
+  background-repeat: no-repeat; /* Prevents the image from tiling */
 }
 html,
 body {
@@ -57,16 +61,25 @@ body {
   width: 20vw;
   color: #b4b4b4;
 }
-#input {
+#input-email {
   width: 100%;
   height: 44px;
   border-radius: 10px;
   box-sizing: border-box;
 }
-#input:hover {
+#input-email :hover {
   box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
 }
-#btn-signup {
+#input-password {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+#input-password :hover {
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+}
+#btn {
   display: flex;
   align-items: center;
   text-align: center;
@@ -81,7 +94,7 @@ body {
   width: 100%;
   min-height: 48px;
 }
-#btn-signup:hover {
+#btn:hover {
   background-color: #1d4ed8;
   cursor: pointer;
 }
