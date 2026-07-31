@@ -50,6 +50,30 @@
         </li>
       </ul>
     </nav>
-    <script src="../JS/script.js"></script>
+    <div id="main-content">
+      <div id="top">
+        <div id="page-title"><h1>Task Management</h1></div>
+
+        <button id="add-task">+ New Task</button>
+      </div>
+    </div>
+    <div id="modal-overlay" class="hidden">
+      <div id="modal">
+        <h2>Subject</h2>
+        <select name="subject" id="subject-selector" class="selector"></select>
+        <h2>Task</h2>
+        <input type="text" id="task-name" />
+        <h2>Deadline</h2>
+        <input type="date" />
+        <h2>Priority</h2>
+        <select
+          name="priority"
+          id="priority-selector"
+          class="selector"
+        ></select>
+        <div id=""></div>
+      </div>
+    </div>
+    <script src="../JS/task-management.js"></script>
   </body>
 </html>
