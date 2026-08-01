@@ -12,7 +12,102 @@ body {
   margin-left: 300px;
   flex: 1;
   padding: 40px;
+
+  display: flex;
+  flex-direction: column;
 }
+#top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 0px 32px 0px;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+}
+#page-title {
+  color: #000000;
+  font-size: 30px;
+  font-weight: 700;
+}
+#add-subject {
+  color: #ffffff;
+  font-weight: 600;
+  background-color: #f59e0b;
+  border: none;
+  font-size: 22px;
+  margin: 50px 50px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 12px 24px;
+}
+#add-subject:hover {
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+#modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+#modal-overlay.hidden {
+  display: none;
+}
+#modal {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  width: 500px;
+}
+#subject-name {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+.selector {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+.deadline-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.cancel-save {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 24px;
+  margin-top: 50px;
+}
+.cancel-save-btn {
+  background-color: #10b981;
+  border: none;
+  color: white;
+  font-size: 20px;
+  width: 20%;
+  min-height: 36px;
+  border-radius: 10px;
+}
+.cancel-save-btn:hover {
+  border: 1px solid #000000;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
 #sidebar {
   background-color: #f8fafc;
   width: 300px;

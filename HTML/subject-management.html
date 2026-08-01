@@ -48,6 +48,30 @@
         </li>
       </ul>
     </nav>
-    <script src="../JS/script.js"></script>
+    <div id="main-content">
+      <div id="top">
+        <div id="page-title"><h1>Subject Management</h1></div>
+
+        <button id="add-subject">+ New Subject</button>
+      </div>
+    </div>
+    <div id="modal-overlay" class="hidden">
+      <div id="modal">
+        <h2>Subject</h2>
+        <input
+          type="text"
+          id="subject-name"
+          placeholder="Example: Math, Literature, English, etc."
+        />
+
+        <h2>Color</h2>
+        <input type="color" id="color-selector" />
+        <div class="cancel-save">
+          <button class="cancel-save-btn" id="cancel-btn">Cancel</button>
+          <button class="cancel-save-btn" id="save-btn">Save</button>
+        </div>
+      </div>
+    </div>
+    <script src="../JS/subject-management.js"></script>
   </body>
 </html>

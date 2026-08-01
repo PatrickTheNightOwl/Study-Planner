@@ -59,19 +59,33 @@
     </div>
     <div id="modal-overlay" class="hidden">
       <div id="modal">
+        <h2>Task</h2>
+        <input
+          type="text"
+          id="task-name"
+          placeholder="Example : math assignment, project, etc."
+        />
+
         <h2>Subject</h2>
         <select name="subject" id="subject-selector" class="selector"></select>
-        <h2>Task</h2>
-        <input type="text" id="task-name" />
-        <h2>Deadline</h2>
-        <input type="date" />
+
+        <h2>Deadline (Date&Time)</h2>
+        <div class="deadline-section">
+          <input type="date" id="deadline-date" class="selector" />
+          <input type="time" id="deadline-time" class="selector" />
+        </div>
+
         <h2>Priority</h2>
-        <select
-          name="priority"
-          id="priority-selector"
-          class="selector"
-        ></select>
-        <div id=""></div>
+        <select name="priority" id="priority-selector" class="selector">
+          <option value="" disabled selected>Select Priority</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <div class="cancel-save">
+          <button class="cancel-save-btn" id="cancel-btn">Cancel</button>
+          <button class="cancel-save-btn" id="save-btn">Save</button>
+        </div>
       </div>
     </div>
     <script src="../JS/task-management.js"></script>
