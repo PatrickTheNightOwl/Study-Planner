@@ -94,7 +94,7 @@ body {
   margin-top: 50px;
 }
 .cancel-save-btn {
-  background-color: #10b981;
+  background-color: #f59e0b;
   border: none;
   color: white;
   font-size: 20px;
@@ -107,7 +107,48 @@ body {
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
-
+#color-recommendation {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-items: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.color {
+  width: 60px; /* Must be equal to height */
+  height: 60px; /* Must be equal to width */
+  border-radius: 50%; /* Makes the square a circle */
+  border: 2px solid #e5e7eb;
+  cursor: pointer;
+}
+.color:hover {
+  transform: scale(1.1);
+}
+.color[data-color="#9CA3AF"] {
+  background: #9ca3af;
+}
+.color[data-color="#EF4444"] {
+  background: #ef4444;
+}
+.color[data-color="#F97316"] {
+  background: #f97316;
+}
+.color[data-color="#EAB308"] {
+  background: #eab308;
+}
+.color[data-color="#22C55E"] {
+  background: #22c55e;
+}
+.color[data-color="#3B82F6"] {
+  background: #3b82f6;
+}
+.color[data-color="#8B5CF6"] {
+  background: #8b5cf6;
+}
+.color[data-color="#EC4899"] {
+  background: #ec4899;
+}
 #sidebar {
   background-color: #f8fafc;
   width: 300px;

@@ -4,7 +4,7 @@ const inputEmail = document.getElementById("input-email");
 const inputPassword = document.getElementById("input-password");
 const database = JSON.parse(localStorage.getItem("studyPlannerDatabase"));
 
-// Add event listener
+// Functions and Events
 logInForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const email = inputEmail.value;

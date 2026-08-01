@@ -55,7 +55,7 @@ function passwordFilter(password) {
 
   return true;
 }
-// Add Event Listener
+// Functions and Events
 signUpForm.addEventListener("submit", function (event) {
   console.log("submit fired");
   event.preventDefault();

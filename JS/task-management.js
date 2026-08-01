@@ -46,7 +46,7 @@ if (tasksList.length !== 0) {
   `;
 }
 
-//Add event listener
+// Functions and Events
 addTaskButton.addEventListener("click", () => {
   taskModalOverlay.classList.remove("hidden");
 });
@@ -90,6 +90,7 @@ saveNewTaskButton.addEventListener("click", () => {
       priority: priority,
     };
     tasksList.push(newTask);
+    alert("Task created!");
     localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
   }
 });
