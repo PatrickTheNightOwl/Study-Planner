@@ -12,6 +12,7 @@ const addTaskButton = document.getElementById("add-task");
 const taskModal = document.getElementById("modal");
 const taskModalOverlay = document.getElementById("modal-overlay");
 const closeModalButton = document.getElementById("cancel-btn");
+const deleteTaskButton = document.getElementById("del-btn");
 const saveNewTaskButton = document.getElementById("save-btn");
 const taskNameInput = document.getElementById("task-name");
 const subjectSelector = document.getElementById("subject-selector");
@@ -63,8 +64,26 @@ addTaskButton.addEventListener("click", () => {
 closeModalButton.addEventListener("click", () => {
   taskModalOverlay.classList.add("hidden");
 });
+deleteTaskButton.addEventListener("click", () => {
+  const taskName = taskNameInput.value;
+  const subjectId = subjectSelector.value;
+  if (taskName.trim() === "") {
+    alert("Please enter task's name!");
+    return;
+  } else if (subjectId === "") {
+    alert("Please select task's subject!");
+    return;
+  } else {
+    const index = tasksList.findIndex(
+      (task) => task.name.toLowerCase() === taskName.toLowerCase()
+    );
+    if (index !== -1) {
+      tasksList.splice(index, 1);
+    }
+  }
+});
 saveNewTaskButton.addEventListener("click", () => {
-  const task = taskNameInput.value;
+  const taskName = taskNameInput.value;
   const subjectId = subjectSelector.value;
   const deadlineDate = deadlineDateSelector.value;
   const deadlineTime = deadlineTimeSelector.value;
@@ -84,16 +103,19 @@ saveNewTaskButton.addEventListener("click", () => {
     return;
   } else if (priority === "") {
     alert("Please select task's priority!");
+    return;
   } else {
-    let taskId;
-    if (tasksList.length === 0) {
-      taskId = 1;
-    } else {
-      taskId = Number(tasksList[tasksList.length - 1].taskId + 1);
+    if (
+      tasksList.find(
+        (task) =>
+          task.task.toLowerCase().trim() === taskName.toLowerCase().trim()
+      )
+    ) {
+      alert("Task is already existed!");
+      return;
     }
     const newTask = {
-      taskId: taskId,
-      task: task,
+      task: taskName,
       subjectId: subjectId,
       deadlineDate: deadlineDate,
       deadlineTime: deadlineTime,

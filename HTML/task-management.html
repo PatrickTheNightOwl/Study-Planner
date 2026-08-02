@@ -52,7 +52,7 @@
       <div id="top">
         <div id="page-title"><h1>Task Management</h1></div>
 
-        <button id="add-task">+ New Task</button>
+        <button id="add-task">✏️ Edit Task</button>
       </div>
       <div id="tasks-container"></div>
     </div>
@@ -67,7 +67,7 @@
 
         <h2>Subject</h2>
         <select name="subject" id="subject-selector" class="selector"></select>
-
+        <h3>*Deleting task only requires task and subject</h3>
         <h2>Deadline (Date&Time)</h2>
         <div class="deadline-section">
           <input type="date" id="deadline-date" class="selector" />
@@ -83,6 +83,7 @@
         </select>
         <div class="cancel-save">
           <button class="cancel-save-btn" id="cancel-btn">Cancel</button>
+          <button class="cancel-save-btn" id="del-btn">Delete</button>
           <button class="cancel-save-btn" id="save-btn">Save</button>
         </div>
       </div>
