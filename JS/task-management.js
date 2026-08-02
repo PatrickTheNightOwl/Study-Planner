@@ -7,7 +7,7 @@ const tasksList = currentUser.tasks;
 const currentDate = new Date();
 
 // Elements Retrieve
-const mainContainer = document.getElementById("main-content");
+const tasksContainer = document.getElementById("tasks-container");
 const addTaskButton = document.getElementById("add-task");
 const taskModal = document.getElementById("modal");
 const taskModalOverlay = document.getElementById("modal-overlay");
@@ -38,12 +38,22 @@ if (subjectsList.length !== 0) {
   `;
 }
 subjectSelector.innerHTML = subjectOptions;
-if (tasksList.length !== 0) {
-  mainContainer.innerHTML += `
-    <div class="priority-container" id="high-priority"></div>
-    <div class="priority-container" id="medium-priority"></div>
-    <div class="priority-container" id="low-priority"></div>
-  `;
+
+function renderTasks() {
+  if (tasksList.length != 0) {
+    tasksContainer.innerHTML = `
+    <div class="tasks-category" id="high-priority">HighPriority</div>
+    <div class="tasks-category" id="medium-priority">MediumPriority</div>
+    <div class="tasks-category" id="low-priority">LowPriority</div>
+    `;
+  } else {
+    tasksContainer.innerHTML = `
+    <p class="no-task-notification">
+    You are all done! There are no tasks left right now.
+    Take a rest or click "Edit Task" to create a new one!
+    </p>
+    `;
+  }
 }
 
 // Functions and Events

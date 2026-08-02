@@ -1,5 +1,5 @@
 body {
-  background-color: #2563eb;
+  background-color: #6796fd;
   font-family: "Inter", sans-serif;
   display: flex;
 }
@@ -66,8 +66,8 @@ body {
   padding: 16px 20px;
 
   background-color: #dbeafe;
-  color: #2563eb;
-  border-left: 4px solid #2563eb;
+  color: black;
+  border-left: 4px solid #6796fd;
   font-weight: 600;
 }
 #brand {

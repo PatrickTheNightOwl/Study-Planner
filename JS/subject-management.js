@@ -44,13 +44,8 @@ function renderSubjects() {
   subjectsContainer.innerHTML = html;
 }
 renderSubjects();
-
 // Functions and Events
-for (let color of colorList) {
-  color.addEventListener("click", () => {
-    selectedColor = color.dataset.color;
-  });
-}
+
 addSubjectButton.addEventListener("click", () => {
   subjectModalOverlay.classList.remove("hidden");
 });
@@ -58,13 +53,30 @@ closeModalButton.addEventListener("click", () => {
   subjectModalOverlay.classList.add("hidden");
 });
 deleteSubjectButton.addEventListener("click", () => {
-  const name = subjectName.value;
-  subjectsList.filter((subject) => subject.name !== name);
-  alert("Subject deleted!");
-  localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
-  renderSubjects();
+  const name = subjectName.value.trim();
+
+  const index = subjectsList.findIndex(
+    (subject) => subject.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (index !== -1) {
+    subjectsList.splice(index, 1);
+
+    localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
+
+    renderSubjects();
+
+    alert("Subject deleted!");
+  } else {
+    alert("No subject found! Please check the subject name again.");
+  }
 });
 saveNewSubjectButton.addEventListener("click", () => {
+  for (let color of colorList) {
+    color.addEventListener("click", () => {
+      selectedColor = color.dataset.color;
+    });
+  }
   let id;
   if (subjectsList.length === 0) {
     id = 1;

@@ -1,5 +1,5 @@
 body {
-  background-color: #10b981;
+  background-color: #adebb3;
   font-family: "Inter", sans-serif;
 }
 html,
@@ -31,9 +31,9 @@ body {
   font-weight: 700;
 }
 #add-task {
-  color: #ffffff;
+  color: black;
   font-weight: 600;
-  background-color: #10b981;
+  background-color: #adebb3;
   border: none;
   font-size: 22px;
   margin: 50px 50px;
@@ -45,8 +45,8 @@ body {
   box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
-.priority-container {
-  background-color: #f8fafc;
+.tasks-container {
+  background-color: #adebb3;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -54,7 +54,6 @@ body {
   border-radius: 25px;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
 }
-
 #modal-overlay {
   position: fixed;
   inset: 0;
@@ -104,7 +103,7 @@ body {
   margin-top: 50px;
 }
 .cancel-save-btn {
-  background-color: #10b981;
+  background-color: #adebb3;
   border: none;
   color: white;
   font-size: 20px;
@@ -157,8 +156,8 @@ body {
   padding: 16px 20px;
 
   background-color: #d1fae5;
-  color: #10b981;
-  border-left: 4px solid #10b981;
+  color: black;
+  border-left: 4px solid #adebb3;
   font-weight: 600;
 }
 #brand {

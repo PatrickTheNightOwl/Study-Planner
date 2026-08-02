@@ -1,5 +1,5 @@
 body {
-  background-color: #f59e0b;
+  background-color: #ffc067;
   font-family: "Inter", sans-serif;
 }
 html,
@@ -31,9 +31,9 @@ body {
   font-weight: 700;
 }
 #add-subject {
-  color: #ffffff;
+  color: black;
   font-weight: 600;
-  background-color: #f59e0b;
+  background-color: #ffc067;
   border: none;
   font-size: 22px;
   margin: 50px 50px;
@@ -94,7 +94,7 @@ body {
   margin-top: 50px;
 }
 .cancel-save-btn {
-  background-color: #f59e0b;
+  background-color: #ffc067;
   border: none;
   color: white;
   font-size: 20px;
@@ -150,11 +150,10 @@ body {
   background: #ec4899;
 }
 #subjects-container {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
+  display: flex;
   justify-items: center;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
 }
 .subject-card {
   width: 240px;
@@ -222,8 +221,8 @@ body {
   padding: 16px 20px;
 
   background-color: #fef3c7;
-  color: #f59e0b;
-  border-left: 4px solid #f59e0b;
+  color: black;
+  border-left: 4px solid #ffc067;
   font-weight: 600;
 }
 #brand {
