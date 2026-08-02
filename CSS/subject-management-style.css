@@ -149,6 +149,40 @@ body {
 .color[data-color="#EC4899"] {
   background: #ec4899;
 }
+#subjects-container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-items: center;
+  align-items: center;
+  gap: 30px;
+}
+.subject-card {
+  width: 240px;
+  height: 120px;
+
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
 #sidebar {
   background-color: #f8fafc;
   width: 300px;

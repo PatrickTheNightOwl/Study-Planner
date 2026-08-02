@@ -41,9 +41,6 @@
           <a href="task-management.html" class="nav-link">📋Task Management</a>
         </li>
         <li class="nav-item">
-          <a href="ai-planner.html" class="nav-link">🤖Your AI Planner</a>
-        </li>
-        <li class="nav-item">
           <a href="settings.html" class="nav-link">⚙️Settings</a>
         </li>
       </ul>
@@ -52,8 +49,9 @@
       <div id="top">
         <div id="page-title"><h1>Subject Management</h1></div>
 
-        <button id="add-subject">+ New Subject</button>
+        <button id="add-subject">+ Edit Subject</button>
       </div>
+      <div id="subjects-container"></div>
     </div>
     <div id="modal-overlay" class="hidden">
       <div id="modal">
@@ -64,7 +62,8 @@
           placeholder="Example: Math, Literature, English, etc."
         />
 
-        <h2>Color</h2>
+        <h2>Color Picker</h2>
+        <h2>(unavailable for deleting subject)</h2>
         <div id="color-recommendation">
           <button class="color" data-color="#9CA3AF"></button>
           <button class="color" data-color="#EF4444"></button>
@@ -76,7 +75,8 @@
           <button class="color" data-color="#EC4899"></button>
         </div>
         <div class="cancel-save">
-          <button class="cancel-save-btn" id="cancel-btn">Cancel</button>
+          <button class="cancel-save-btn" id="cancel-btn">Cancel</button
+          ><button class="cancel-save-btn" id="del-btn">Delete</button>
           <button class="cancel-save-btn" id="save-btn">Save</button>
         </div>
       </div>
