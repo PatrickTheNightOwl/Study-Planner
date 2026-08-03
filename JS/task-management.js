@@ -47,6 +47,90 @@ function renderTasks() {
     <div class="tasks-category" id="medium-priority">MediumPriority</div>
     <div class="tasks-category" id="low-priority">LowPriority</div>
     `;
+    const highPriority = document.getElementById("high-priority");
+    const mediumPriority = document.getElementById("medium-priority");
+    const lowPriority = document.getElementById("low-priority");
+    let highHTML = "";
+    let mediumHTML = "";
+    let lowHTML = "";
+    tasksList.forEach((element) => {
+      // 1. Pass the string into a Date instance
+      const dateObj = new Date(element.deadlineDate);
+
+      // 2. Configure the exact layout specifications
+      const formalOptions = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+
+      // 3. Convert to a formal English format
+      const formalDate = dateObj.toLocaleDateString("en-US", formalOptions);
+
+      if (element.priority === "high") {
+        highHTML += `
+        <div class="task-card" data-task="${element.task}">
+          <div class="task-info">
+            <h3 class="task-title">${element.task}</h3>
+              <p class="task-deadline">
+                  Deadline: ${formalDate}, ${element.deadlineTime}
+              </p>
+          </div>
+          <input type="checkbox" class="complete-task-checkbox">
+        </div>
+        `;
+      } else if (element.priority === "medium") {
+        mediumHTML += `
+        <div class="task-card" data-task="${element.task}">
+          <div class="task-info">
+            <h3 class="task-title">${element.task}</h3>
+            <p class="task-deadline">
+                Deadline: ${formalDate}, ${element.deadlineTime}
+            </p>
+          </div>
+          <input type="checkbox" class="complete-task-checkbox">
+        </div>
+        `;
+      } else {
+        lowHTML += `
+        <div class="task-card" data-task="${element.task}">
+          <div class="task-info">
+            <h3 class="task-title">${element.task}</h3>
+            <p class="task-deadline">
+                Deadline: ${formalDate}, ${element.deadlineTime}
+            </p>
+          </div>
+          <input type="checkbox" class="complete-task-checkbox">
+        </div>
+        
+        `;
+      }
+      highPriority.innerHTML = highHTML;
+      mediumPriority.innerHTML = mediumHTML;
+      lowPriority.innerHTML = lowHTML;
+    });
+    const tasksCheckboxes = document.querySelectorAll(
+      ".complete-task-checkbox"
+    );
+    tasksCheckboxes.forEach((element) => {
+      element.addEventListener("change", (event) => {
+        if (event.target.checked) {
+          const finishedTask = element.parentElement.dataset.task;
+          const finishedTaskIndex = tasksList.indexOf(
+            tasksList.find((taskElement) => taskElement.task === finishedTask)
+          );
+
+          setTimeout(() => {
+            tasksList.splice(finishedTaskIndex, 1);
+            localStorage.setItem(
+              "studyPlannerDatabase",
+              JSON.stringify(database)
+            );
+            renderTasks();
+          }, 300);
+        }
+      });
+    });
   } else {
     tasksContainer.innerHTML = `
     <p class="no-task-notification">
@@ -56,7 +140,7 @@ function renderTasks() {
     `;
   }
 }
-
+renderTasks();
 // Functions and Events
 addTaskButton.addEventListener("click", () => {
   taskModalOverlay.classList.remove("hidden");
@@ -75,24 +159,29 @@ deleteTaskButton.addEventListener("click", () => {
     return;
   } else {
     const index = tasksList.findIndex(
-      (task) => task.name.toLowerCase() === taskName.toLowerCase()
+      (task) => task.task.toLowerCase() === taskName.toLowerCase()
     );
     if (index !== -1) {
       tasksList.splice(index, 1);
+      localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
+      renderTasks();
+      alert("Task deleted!");
+    } else {
+      alert("No task found! Please check the subject name again.");
     }
   }
 });
 saveNewTaskButton.addEventListener("click", () => {
   const taskName = taskNameInput.value;
-  const subjectId = subjectSelector.value;
+  const subjectId = Number(subjectSelector.value);
   const deadlineDate = deadlineDateSelector.value;
   const deadlineTime = deadlineTimeSelector.value;
   const priority = prioritySelector.value;
 
-  if (task.trim() === "") {
+  if (taskName.trim() === "") {
     alert("Please enter task's name!");
     return;
-  } else if (subjectId === "") {
+  } else if (!subjectSelector.value) {
     alert("Please select task's subject!");
     return;
   } else if (deadlineDate === "") {
@@ -113,16 +202,18 @@ saveNewTaskButton.addEventListener("click", () => {
     ) {
       alert("Task is already existed!");
       return;
+    } else {
+      const newTask = {
+        task: taskName,
+        subjectId: subjectId,
+        deadlineDate: deadlineDate,
+        deadlineTime: deadlineTime,
+        priority: priority,
+      };
+      tasksList.push(newTask);
+      localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
+      renderTasks();
+      alert("Task created!");
     }
-    const newTask = {
-      task: taskName,
-      subjectId: subjectId,
-      deadlineDate: deadlineDate,
-      deadlineTime: deadlineTime,
-      priority: priority,
-    };
-    tasksList.push(newTask);
-    alert("Task created!");
-    localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
   }
 });
