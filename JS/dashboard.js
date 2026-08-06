@@ -46,11 +46,30 @@ function getUpcomingHolidayDataFromHolidays(rawData) {
 const upcomingHolidayData = getUpcomingHolidayDataFromHolidays(holidays);
 
 // Add informations to container
-let html = `
+let holidaysHTML = `
     <h2>${upcomingHolidayData.name}<h2>
     <h2>${upcomingHolidayData.upcomingHoliday}<h2>
 `;
-console.log(holidaysContainer);
-console.log(subjectsContainer);
-console.log(tasksContainer);
-holidaysContainer.innerHTML = html;
+holidaysContainer.innerHTML = holidaysHTML;
+
+let subjectsHTML = "";
+subjectsList.forEach((subject) => {
+  const remainingTasks = tasksList.filter(
+    (task) => task.subjectId === subject.id
+  ).length;
+  subjectsHTML += `
+            <div
+                class="subject-card"
+                style="background-color:${subject.color}">
+                <h3>${subject.name}</h3>
+                <p>${remainingTasks} task${
+    remainingTasks !== 1 ? "s" : ""
+  } remaining</p>
+            </div>
+        `;
+});
+// các element cần edit css vào dashboard.css : class subject-card, h3 và p của nó
+subjectsContainer.innerHTML = subjectsHTML;
+
+let tasksHTML = "";
+tasksList.forEach((task) => {});
