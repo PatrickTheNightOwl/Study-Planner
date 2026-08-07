@@ -45,6 +45,34 @@
         </li>
       </ul>
     </nav>
-    <script src="../JS/script.js"></script>
+    <div id="main-content">
+      <div id="second-layer-content">
+        <div id="page-title"><h1>Settings</h1></div>
+        <div class="informations">
+          <h1 id="current-email"></h1>
+          <button class="change-btn" id="change-email-btn">✏️</button>
+        </div>
+        <div class="informations">
+          <h1 id="current-password"></h1>
+          <button class="change-btn" id="change-password-btn">✏️</button>
+        </div>
+        <div id="logout">
+          <button id="logout-btn">Log Out</button>
+        </div>
+      </div>
+    </div>
+    <div id="modal-overlay" class="hidden">
+      <div id="modal">
+        <div class="informations">
+          <h1 id="current-information"></h1>
+        </div>
+        <input type="text" placeholder="" id="new-info-input" />
+        <div class="cancel-save">
+          <button class="cancel-save-btn" id="cancel-btn">Cancel</button>
+          <button class="cancel-save-btn" id="save-btn">Save</button>
+        </div>
+      </div>
+    </div>
+    <script src="../JS/settings.js"></script>
   </body>
 </html>

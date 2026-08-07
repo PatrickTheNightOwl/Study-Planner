@@ -60,6 +60,12 @@ deleteSubjectButton.addEventListener("click", () => {
   );
 
   if (index !== -1) {
+    const deleteSubjectId = subjectsList[index].id;
+    for (let i = 0; i < tasksList.length; i++) {
+      if (tasksList[i].subjectId === deleteSubjectId) {
+        tasksList.splice(i, 1);
+      }
+    }
     subjectsList.splice(index, 1);
 
     localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));

@@ -74,7 +74,6 @@ signUpForm.addEventListener("submit", function (event) {
     alert(passwordCheck);
     return;
   } else {
-    console.log("Validation passed");
     let userId;
     if (database.users.length === 0) {
       userId = 1;
