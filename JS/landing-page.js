@@ -14,7 +14,7 @@ if (currentUser) {
 
   getStartedNavigation.innerHTML = `
         <a href="dashboard.html" class="btn-signup cta-btn">
-            Get Started
+            Go to Dashboard
         </a>
     `;
 } else {
