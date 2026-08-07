@@ -184,3 +184,12 @@ body {
 
   text-shadow: 0 0 10px #ffffff;
 }
+.feature {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}
+.feature-describe {
+  font-size: 30px;
+  font-weight: 500;
+}
