@@ -134,8 +134,8 @@ function renderTasks() {
   } else {
     tasksContainer.innerHTML = `
     <p class="no-task-notification">
-    You are all done! There are no tasks left right now.
-    Take a rest or click "Edit Task" to create a new one!
+    There are no tasks left right now.
+    Click "Edit Task" to create a new one!
     </p>
     `;
   }

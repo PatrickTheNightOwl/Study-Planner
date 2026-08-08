@@ -87,6 +87,7 @@ signUpForm.addEventListener("submit", function (event) {
       subjects: [],
       tasks: [],
     };
+
     database.users.push(newData);
     localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
     const loginPage = "../HTML/authentication-login.html";
