@@ -1,7 +1,14 @@
 // Data Retrieve
-const database = JSON.parse(localStorage.getItem("studyPlannerDatabase"));
+const database = JSON.parse(localStorage.getItem("studyPlannerDatabase")) || {
+  users: [],
+};
 const currentUserId = Number(localStorage.getItem("currentUserId"));
 const currentUser = database.users.find((user) => user.id === currentUserId);
+
+if (!currentUser) {
+  window.location.replace("authentication-login.html");
+  throw new Error("A signed-in user is required to view settings.");
+}
 
 // Elements Retrieve
 const currentEmail = document.getElementById("current-email");
@@ -18,7 +25,7 @@ const newInfoInput = document.getElementById("new-info-input");
 // Functions
 function renderInformations() {
   currentEmail.textContent = `Email: ${currentUser.email}`;
-  currentPassword.textContent = `Password: ${currentUser.password}`;
+  currentPassword.textContent = "Password: hidden";
 }
 function emailFilter(email) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -73,15 +80,26 @@ renderInformations();
 changeEmailButton.addEventListener("click", () => {
   currentInfomation.textContent = `Current Email: ${currentUser.email}`;
   currentInfomation.dataset.info = "email";
+  newInfoInput.type = "email";
+  newInfoInput.placeholder = "Enter a new email address";
+  newInfoInput.value = "";
   modalOverlay.classList.remove("hidden");
+  newInfoInput.focus();
 });
 changePasswordButton.addEventListener("click", () => {
-  currentInfomation.textContent = `Current Password: ${currentUser.password}`;
+  currentInfomation.textContent = "Current Password: hidden";
   currentInfomation.dataset.info = "password";
+  newInfoInput.type = "password";
+  newInfoInput.placeholder = "Enter a new password";
+  newInfoInput.value = "";
   modalOverlay.classList.remove("hidden");
+  newInfoInput.focus();
 });
 closeModalButton.addEventListener("click", () => {
   modalOverlay.classList.add("hidden");
+});
+modalOverlay.addEventListener("click", (event) => {
+  if (event.target === modalOverlay) modalOverlay.classList.add("hidden");
 });
 saveNewInfoButton.addEventListener("click", () => {
   const currentInput = newInfoInput.value;
@@ -104,6 +122,7 @@ saveNewInfoButton.addEventListener("click", () => {
       alert("Email changed!");
       renderInformations();
       modalOverlay.classList.add("hidden");
+      newInfoInput.value = "";
     }
   } else {
     const passwordCheck = passwordFilter(currentInput);
@@ -116,6 +135,7 @@ saveNewInfoButton.addEventListener("click", () => {
       alert("Password changed!");
       renderInformations();
       modalOverlay.classList.add("hidden");
+      newInfoInput.value = "";
     }
   }
 });

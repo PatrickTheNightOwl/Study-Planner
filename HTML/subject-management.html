@@ -3,85 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title -->
-    <title>Study Planner</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../Assets/favicon.png"
-    />
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="../CSS/subject-management-style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#15233b" />
+    <title>Subjects | Study Planner</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../Assets/favicon.png" />
+    <link rel="stylesheet" href="../CSS/app-shell.css?v=3" />
+    <link rel="stylesheet" href="../CSS/subject-management-style.css?v=2" />
   </head>
   <body>
-    <nav id="sidebar">
+    <nav id="sidebar" aria-label="Main navigation">
       <div id="brand">
         <img src="../Assets/icon.png" alt="" class="website-logo" />
         <a href="index.html" id="website-name">Study Planner</a>
       </div>
 
       <ul id="nav-list">
-        <li class="nav-item">
-          <a href="dashboard.html" class="nav-link">📊Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a href="subject-management.html" class="nav-link active"
-            >📚Subject Management</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="task-management.html" class="nav-link">📋Task Management</a>
-        </li>
-        <li class="nav-item">
-          <a href="settings.html" class="nav-link">⚙️Settings</a>
-        </li>
+        <li class="nav-item"><a href="dashboard.html" class="nav-link"><span class="nav-icon" aria-hidden="true">&#9638;</span><span>Dashboard</span></a></li>
+        <li class="nav-item"><a href="subject-management.html" class="nav-link active" aria-current="page"><span class="nav-icon" aria-hidden="true">&#9635;</span><span>Subjects</span></a></li>
+        <li class="nav-item"><a href="task-management.html" class="nav-link"><span class="nav-icon" aria-hidden="true">&#10003;</span><span>Tasks</span></a></li>
+        <li class="nav-item"><a href="settings.html" class="nav-link"><span class="nav-icon" aria-hidden="true">&#9881;</span><span>Settings</span></a></li>
       </ul>
     </nav>
-    <div id="main-content">
-      <div id="top">
-        <div id="page-title"><h1>Subject Management</h1></div>
 
-        <button id="add-subject">✏️ Edit Subject</button>
-      </div>
-      <div id="subjects-container"></div>
-    </div>
+    <main id="main-content">
+      <header id="top">
+        <div id="page-title"><h1>Subjects</h1></div>
+        <button id="add-subject" type="button"><span aria-hidden="true">+</span> Add subject</button>
+      </header>
+      <section id="subjects-container" aria-label="Your subjects"></section>
+    </main>
+
     <div id="modal-overlay" class="hidden">
-      <div id="modal">
-        <h2>Subject</h2>
-        <input
-          type="text"
-          id="subject-name"
-          placeholder="Example: Math, Literature, English, etc."
-        />
-        <h3>*deleting subject only requires subject name</h3>
-        <h3>*deleting a subject also delete all associated tasks.</h3>
-        <h2>Color Picker</h2>
+      <div id="modal" role="dialog" aria-modal="true" aria-labelledby="subject-modal-title">
+        <h2 id="subject-modal-title">Manage subject</h2>
+        <input type="text" id="subject-name" placeholder="Example: Math, Literature, English" aria-label="Subject name" />
+        <h3>Enter a name to create or delete a subject.</h3>
+        <h3>Deleting a subject also deletes its associated tasks.</h3>
+        <h2>Color</h2>
 
-        <div id="color-recommendation">
-          <button class="color" data-color="#9CA3AF"></button>
-          <button class="color" data-color="#EF4444"></button>
-          <button class="color" data-color="#F97316"></button>
-          <button class="color" data-color="#EAB308"></button>
-          <button class="color" data-color="#22C55E"></button>
-          <button class="color" data-color="#3B82F6"></button>
-          <button class="color" data-color="#8B5CF6"></button>
-          <button class="color" data-color="#EC4899"></button>
+        <div id="color-recommendation" aria-label="Choose a subject color">
+          <button class="color" type="button" data-color="#9CA3AF" aria-label="Gray"></button>
+          <button class="color" type="button" data-color="#EF4444" aria-label="Red"></button>
+          <button class="color" type="button" data-color="#F97316" aria-label="Orange"></button>
+          <button class="color" type="button" data-color="#EAB308" aria-label="Yellow"></button>
+          <button class="color" type="button" data-color="#22C55E" aria-label="Green"></button>
+          <button class="color" type="button" data-color="#3B82F6" aria-label="Blue"></button>
+          <button class="color" type="button" data-color="#8B5CF6" aria-label="Purple"></button>
+          <button class="color" type="button" data-color="#EC4899" aria-label="Pink"></button>
         </div>
+
         <div class="cancel-save">
-          <button class="cancel-save-btn" id="cancel-btn">Cancel</button
-          ><button class="cancel-save-btn" id="del-btn">Delete</button>
-          <button class="cancel-save-btn" id="save-btn">Save</button>
+          <button class="cancel-save-btn" id="cancel-btn" type="button">Cancel</button>
+          <button class="cancel-save-btn" id="del-btn" type="button">Delete</button>
+          <button class="cancel-save-btn" id="save-btn" type="button">Save</button>
         </div>
       </div>
     </div>
-    <script src="../JS/subject-management.js"></script>
+
+    <script src="../JS/subject-management.js?v=2"></script>
   </body>
 </html>

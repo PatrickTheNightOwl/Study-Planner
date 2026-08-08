@@ -3,46 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Study Planner</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../Assets/favicon.png"
-    />
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="../CSS/authentication.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#0d172a" />
+    <title>Sign Up | Study Planner</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../Assets/favicon.png" />
+    <link rel="stylesheet" href="../CSS/authentication.css?v=2" />
   </head>
   <body>
-    <div id="auth-section">
+    <main id="auth-section">
       <div id="brand">
         <img src="../Assets/icon.png" alt="" class="website-logo" />
         <a href="index.html" id="website-name">Study Planner</a>
       </div>
+
       <h1 id="slogan">Where you organize your study.</h1>
-      <h1 id="caption">Sign Up</h1>
-      <form action="" id="form">
-        <p>Email</p>
-        <input type="text" placeholder="Your email account" id="input-email" />
-        <p>Password</p>
-        <input
-          type="password"
-          placeholder="Your password"
-          id="input-password"
-        />
-        <div id="signup">
-          <button id="btn" type="submit">Sign Up</button>
-        </div>
-      </form>
-    </div>
-    <script src="../JS/database.js"></script>
-    <script src="../JS/sign-up.js"></script>
+      <p class="auth-visual-copy">A focused workspace for the small steps that add up.</p>
+
+      <section class="auth-form-panel" aria-labelledby="caption">
+        <p class="auth-eyebrow">Start with a clear plan</p>
+        <h2 id="caption">Sign Up</h2>
+        <p class="auth-help">Create your local study space in less than a minute.</p>
+
+        <form action="" id="form">
+          <label for="input-email">Email</label>
+          <input type="email" placeholder="you@example.com" id="input-email" autocomplete="email" required />
+
+          <label for="input-password">Password</label>
+          <input type="password" placeholder="Create a password" id="input-password" autocomplete="new-password" required />
+
+          <div id="signup">
+            <button id="btn" type="submit">Create Account</button>
+          </div>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="authentication-login.html">Log in</a></p>
+      </section>
+    </main>
+
+    <script src="../JS/database.js?v=2"></script>
+    <script src="../JS/sign-up.js?v=2"></script>
   </body>
 </html>

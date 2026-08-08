@@ -3,23 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title -->
-    <title>Study Planner</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../Assets/favicon.png"
-    />
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="../CSS/landing-page.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#0d172a" />
+    <title>Study Planner | Make space for better study days</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../Assets/favicon.png" />
+    <link rel="stylesheet" href="../CSS/landing-page.css?v=2" />
   </head>
   <body>
     <nav id="navbar">
@@ -28,137 +15,147 @@
           <img src="../Assets/icon.png" alt="" class="website-logo" />
           <a href="index.html" id="website-name">Study Planner</a>
         </div>
+
         <ul id="nav-list">
-          <li class="nav-item">
-            <a href="#about" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a href="#features" class="nav-link">Features</a>
-          </li>
-          <li class="nav-item">
-            <a href="#rates" class="nav-link">Rates</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link">Contact</a>
-          </li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">Why it works</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
+
         <div class="nav-auth" id="currentUser">
-          <a href="../HTML/authentication-login.html" class="btn-login"
-            >Log In</a
-          >
-          <a href="../HTML/authentication-login.html" class="btn-signup"
-            >Sign Up</a
-          >
+          <a href="../HTML/authentication-login.html" class="btn-login">Log In</a>
+          <a href="../HTML/authentication-signup.html" class="btn-signup">Sign Up</a>
         </div>
       </div>
     </nav>
-    <section id="hero-section">
-      <div id="slogan">
-        <h1>Organize your study.</h1>
-        <h1>Learn smarter.</h1>
-        <h1>Achieve more.</h1>
-      </div>
 
-      <div class="nav-auth secondary" id="cta">
-        <a href="../HTML/authentication-signup.html" class="btn-signup cta-btn"
-          >Get Started</a
-        >
-      </div>
-    </section>
-    <section id="about">
-      <h1 class="about-text">What is Study Planner ?</h1>
-      <p class="about-text">
-        <span class="highlight">Study Planner</span> is a simple
-        <span class="highlight">productivity tool</span> that helps students
-        organize subjects, manage tasks, and keep track of deadlines in
-        <span class="highlight">one place</span>. Stay
-        <span class="highlight">focused</span>, reduce stress, and spend more
-        time learning instead of worrying about what comes next.
-      </p>
-    </section>
-
-    <section id="features">
-      <!-- Dashboard -->
-      <div class="feature" id="feature-dashboard">
-        <div
-          class="background"
-          style="background-image: url('../Assets/dashboard-example.png')"
-        ></div>
-
-        <div class="feature-content">
-          <div class="feature-title">
-            <h1>Dashboard</h1>
-            <h1>Simple - Effective</h1>
-          </div>
-
-          <p class="feature-describe">
-            Get a clear overview of your subjects and remaining tasks in one
-            place. Stay informed about your workload, priorities, and upcoming
-            deadlines without unnecessary complexity.
+    <main>
+      <section id="hero-section">
+        <div id="slogan">
+          <p class="hero-eyebrow">A calmer way to study</p>
+          <h1>Organize your study.<br /><span>Learn smarter.</span><br />Achieve more.</h1>
+          <p class="hero-description">
+            Keep subjects, tasks, deadlines, and priorities in one clear place so
+            your next study session always feels manageable.
           </p>
-        </div>
-      </div>
 
-      <!-- Subject Management -->
-      <div class="feature" id="feature-subject">
-        <div
-          class="background"
-          style="background-image: url('../Assets/subject-example.png')"
-        ></div>
-        <div class="feature-content">
-          <div class="feature-title">
-            <h1>Subject Management</h1>
-            <h1>Colorful - Easy to use</h1>
+          <div class="nav-auth secondary" id="cta">
+            <a href="../HTML/authentication-signup.html" class="btn-signup cta-btn">Get Started</a>
           </div>
-
-          <p class="feature-describe">
-            Create, organize, and manage your subjects with custom colors. Keep
-            your study space structured and visually clear while seeing how many
-            tasks remain for each subject.
-          </p>
         </div>
-      </div>
 
-      <!-- Task Management -->
-      <div class="feature" id="feature-task">
-        <div
-          class="background"
-          style="background-image: url('../Assets/task-example.png')"
-        ></div>
-
-        <div class="feature-content">
-          <div class="feature-title">
-            <h1>Task Management</h1>
-            <h1>Modern - Productive</h1>
+        <div class="hero-art" aria-label="Study Planner dashboard preview">
+          <div class="hero-art-card">
+            <img src="../Assets/dashboard-example.png" alt="Study Planner dashboard preview" />
           </div>
+          <div class="hero-art-note">
+            <span class="hero-note-dot" aria-hidden="true"></span>
+            <div>
+              <strong>Next up</strong>
+              <span>Stay ahead of every deadline.</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <p class="feature-describe">
-            Create, prioritize, and manage tasks with deadlines, specific times,
-            and subjects. Mark completed tasks instantly and keep your workload
-            organized by priority for a more productive study routine.
+      <section id="about">
+        <div class="about-inner">
+          <p class="section-kicker">Why Study Planner</p>
+          <h2>A clear place for every deadline.</h2>
+          <p class="about-text">
+            <span class="highlight">Study Planner</span> is a simple
+            <span class="highlight">productivity tool</span> that helps students
+            organize subjects, manage tasks, and keep track of deadlines in
+            <span class="highlight">one place</span>. Stay
+            <span class="highlight">focused</span>, reduce stress, and spend more
+            time learning instead of worrying about what comes next.
           </p>
-        </div>
-      </div>
-    </section>
 
-    <section id="contact" class="contact">
-      <div class="contact-content">
-        <h2>Get in Touch</h2>
-        <p>
-          Have a question, suggestion, or just want to learn more about Study
-          Planner? Feel free to reach out.
-        </p>
-
-        <div class="contact-links">
-          <a href="mailto:myfamilyisatreasure">Email</a>
-          <a href="https://github.com/patrickthenightowl" target="_blank"
-            >GitHub</a
-          >
+          <div class="about-points">
+            <div class="about-point">
+              <strong>See the full picture</strong>
+              <span>Know what is due, what is next, and what can wait.</span>
+            </div>
+            <div class="about-point">
+              <strong>Keep it personal</strong>
+              <span>Shape your subjects with colors that make sense to you.</span>
+            </div>
+            <div class="about-point">
+              <strong>Make progress visible</strong>
+              <span>Check off completed work and keep moving forward.</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section id="features">
+        <div class="feature" id="feature-dashboard">
+          <div class="background" style="background-image: url('../Assets/dashboard-example.png')"></div>
+          <div class="feature-content">
+            <div class="feature-title">
+              <p class="feature-label">Your daily view</p>
+              <h2>Dashboard</h2>
+              <p class="feature-tagline">Simple and effective.</p>
+            </div>
+            <p class="feature-describe">
+              Get a clear overview of your subjects and remaining tasks in one
+              place. Stay informed about your workload, priorities, and upcoming
+              deadlines without unnecessary complexity.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature" id="feature-subject">
+          <div class="background" style="background-image: url('../Assets/subject-example.png')"></div>
+          <div class="feature-content">
+            <div class="feature-title">
+              <p class="feature-label">Build your workspace</p>
+              <h2>Subjects</h2>
+              <p class="feature-tagline">Colorful and easy to use.</p>
+            </div>
+            <p class="feature-describe">
+              Create, organize, and manage your subjects with custom colors. Keep
+              your study space structured and visually clear while seeing how many
+              tasks remain for each subject.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature" id="feature-task">
+          <div class="background" style="background-image: url('../Assets/task-example.png')"></div>
+          <div class="feature-content">
+            <div class="feature-title">
+              <p class="feature-label">Turn plans into progress</p>
+              <h2>Tasks</h2>
+              <p class="feature-tagline">Modern and productive.</p>
+            </div>
+            <p class="feature-describe">
+              Create, prioritize, and manage tasks with deadlines, specific times,
+              and subjects. Mark completed tasks instantly and keep your workload
+              organized by priority for a more productive study routine.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="contact-content">
+          <h2>Ready to make studying feel lighter?</h2>
+          <p>
+            Have a question, suggestion, or just want to learn more about Study
+            Planner? Feel free to reach out.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:myfamilyisatreasure">Email</a>
+            <a href="https://github.com/patrickthenightowl" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer><p>&copy; 2026 Study Planner. All rights reserved.</p></footer>
-    <script src="../JS/landing-page.js"></script>
+    <script src="../JS/database.js?v=2"></script>
+    <script src="../JS/landing-page.js?v=2"></script>
   </body>
 </html>

@@ -3,26 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title -->
-    <title>Study Planner</title>
+    <meta name="theme-color" content="#15233b" />
+    <title>Dashboard | Study Planner</title>
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
       href="../Assets/favicon.png"
     />
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="../CSS/dashboard-style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="../CSS/app-shell.css?v=3" />
+    <link rel="stylesheet" href="../CSS/dashboard-style.css?v=2" />
   </head>
   <body>
-    <nav id="sidebar">
+    <nav id="sidebar" aria-label="Main navigation">
       <div id="brand">
         <img src="../Assets/icon.png" alt="" class="website-logo" />
         <a href="index.html" id="website-name">Study Planner</a>
@@ -30,29 +23,39 @@
 
       <ul id="nav-list">
         <li class="nav-item">
-          <a href="dashboard.html" class="nav-link active">📊Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a href="subject-management.html" class="nav-link"
-            >📚Subject Management</a
+          <a href="dashboard.html" class="nav-link active" aria-current="page"
+            ><span class="nav-icon" aria-hidden="true">&#9638;</span
+            ><span>Dashboard</span></a
           >
         </li>
         <li class="nav-item">
-          <a href="task-management.html" class="nav-link">📋Task Management</a>
+          <a href="subject-management.html" class="nav-link"
+            ><span class="nav-icon" aria-hidden="true">&#9635;</span
+            ><span>Subjects</span></a
+          >
         </li>
         <li class="nav-item">
-          <a href="settings.html" class="nav-link">⚙️Settings</a>
+          <a href="task-management.html" class="nav-link"
+            ><span class="nav-icon" aria-hidden="true">&#10003;</span
+            ><span>Tasks</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="settings.html" class="nav-link"
+            ><span class="nav-icon" aria-hidden="true">&#9881;</span
+            ><span>Settings</span></a
+          >
         </li>
       </ul>
     </nav>
-    <div id="main-content">
-      <div id="holiday"></div>
-      <div id="subjects-title"><h1>Subjects</h1></div>
-      <div id="subjects"></div>
-      <div id="tasks"></div>
-    </div>
 
-    <script src="../JS/dashboard.js"></script>
+    <main id="main-content">
+      <section id="holiday" aria-label="Upcoming holiday"></section>
+      <section id="subjects-title"><h1>Subjects</h1></section>
+      <section id="subjects" aria-label="Your subjects"></section>
+      <section id="tasks" aria-label="Your tasks"></section>
+    </main>
     <script src="../JS/holiday.js"></script>
+    <script src="../JS/dashboard.js?v=2"></script>
   </body>
 </html>

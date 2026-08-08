@@ -1,201 +1,235 @@
-// Data Retrieve
-const database = JSON.parse(localStorage.getItem("studyPlannerDatabase"));
-const holidays = JSON.parse(localStorage.getItem("studyPlannerHolidays"));
+const database = JSON.parse(localStorage.getItem("studyPlannerDatabase")) || {
+  users: [],
+};
+
 const currentUserId = Number(localStorage.getItem("currentUserId"));
 const currentUser = database.users.find((user) => user.id === currentUserId);
-const subjectsList = currentUser.subjects;
-const tasksList = currentUser.tasks;
 
-// Elemenet Retrieve
+if (!currentUser) {
+  window.location.replace("authentication-login.html");
+  throw new Error("A signed-in user is required to view the dashboard.");
+}
+
+const subjectsList = currentUser.subjects || [];
+const tasksList = currentUser.tasks || [];
+
 const holidaysContainer = document.getElementById("holiday");
+const subjectsTitle = document.getElementById("subjects-title");
 const subjectsContainer = document.getElementById("subjects");
 const tasksContainer = document.getElementById("tasks");
 
-// Functions
-function getFormattedDate(rawDate, year) {
-  const month = String(rawDate.getMonth() + 1).padStart(2, "0");
-  const day = String(rawDate.getDate()).padStart(2, "0");
-  const formatted = `${year}-${month}-${day}`;
-  return formatted;
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
-function getUpcomingHolidayDataFromHolidays(rawData) {
-  // Holiday API Free chỉ cung cấp dữ liệu của năm trước,
-  // vì vậy dashboard sử dụng năm dữ liệu của API để tính toán ngày lễ tiếp theo.
-  let currentDateObj = new Date();
-  const year = "2025";
-  const formatted = getFormattedDate(currentDateObj, year);
-  currentDateObj = new Date(formatted);
-  currentDateObj.setHours(0, 0, 0, 0);
-  const holidays = rawData.holidays;
-  let essentialData = {
-    name: null,
-    upcomingHoliday: null,
-  };
-  const upcomingHoliday = holidays.find((holiday) => {
-    const holidayDateObj = new Date(`${holiday.date}T00:00:00`);
-    return holidayDateObj >= currentDateObj;
+
+function formatDate(rawDate) {
+  const date = new Date(`${rawDate}T00:00:00`);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
-  essentialData.name = upcomingHoliday.name;
-  const holidayDate = new Date(`${upcomingHoliday.date}T00:00:00`);
-  essentialData.upcomingHoliday = getFormattedDate(holidayDate, 2026);
-
-  return essentialData;
 }
+
+function getUpcomingHolidayData(rawData) {
+  const holidayItems = Array.isArray(rawData?.holidays) ? rawData.holidays : [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcoming = holidayItems
+    .map((holiday) => {
+      const sourceDate = new Date(`${holiday.date}T00:00:00`);
+      if (Number.isNaN(sourceDate.getTime())) return null;
+
+      const candidate = new Date(
+        today.getFullYear(),
+        sourceDate.getMonth(),
+        sourceDate.getDate()
+      );
+      if (candidate < today) candidate.setFullYear(candidate.getFullYear() + 1);
+
+      return { name: holiday.name, date: candidate };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.date - b.date)[0];
+
+  return upcoming || null;
+}
+
 function sortTasksByDeadline() {
-  const sortedTasks = [...tasksList];
-  const priorityOrder = {
-    high: 0,
-    medium: 1,
-    low: 2,
-  };
-
-  sortedTasks.sort((a, b) => {
+  const priorityOrder = { high: 0, medium: 1, low: 2 };
+  return [...tasksList].sort((a, b) => {
     const priorityDiff = priorityOrder[a.priority] - priorityOrder[b.priority];
-
     if (priorityDiff !== 0) return priorityDiff;
 
-    const dateA = new Date(`${a.deadlineDate}T${a.deadlineTime}`);
-
-    const dateB = new Date(`${b.deadlineDate}T${b.deadlineTime}`);
-
-    return dateA - dateB;
-  });
-  return sortedTasks;
-}
-
-// Essential Data Initialize
-const upcomingHolidayData = getUpcomingHolidayDataFromHolidays(holidays);
-
-// Add informations to container
-const dateObj = new Date(upcomingHolidayData.upcomingHoliday);
-const formalOptions = {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-};
-const formalHolidayDate = dateObj.toLocaleDateString("en-US", formalOptions);
-let holidaysHTML = `
-    <h1>Upcoming Holiday<h1>
-    <h2>${upcomingHolidayData.name}<h2>
-    <h2>${formalHolidayDate}<h2>
-`;
-holidaysContainer.innerHTML = holidaysHTML;
-
-let subjectsHTML = "";
-subjectsList.forEach((subject) => {
-  const remainingTasks = tasksList.filter(
-    (task) => task.subjectId === subject.id
-  ).length;
-  subjectsHTML += `
-            <div
-                class="subject-card"
-                style="background-color:${subject.color}">
-                <h3>${subject.name}</h3>
-                <p>${remainingTasks} task${
-    remainingTasks !== 1 ? "s" : ""
-  } remaining</p>
-            </div>
-        `;
-});
-// các element cần edit css vào dashboard.css : class subject-card, h3 và p của nó
-if (subjectsHTML.length === 0) {
-  document.getElementById("subjects-title").remove();
-} else {
-  subjectsContainer.innerHTML = subjectsHTML;
-}
-let highHTML = "";
-let mediumHTML = "";
-let lowHTML = "";
-const sortedTasks = sortTasksByDeadline();
-if (sortedTasks.length === 0) {
-  tasksContainer.innerHTML = `
-    <p class="no-task-notification">
-    There are no tasks left right now.
-    Click "Edit Task" to create a new one!
-    </p>
-    `;
-} else {
-  sortedTasks.forEach((element) => {
-    // 1. Pass the string into a Date instance
-    const dateObj = new Date(element.deadlineDate);
-
-    // 2. Configure the exact layout specifications
-    const formalOptions = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-
-    // 3. Convert to a formal English format
-    const formalDate = dateObj.toLocaleDateString("en-US", formalOptions);
-    if (element.priority === "high") {
-      highHTML += `
-        <div class="task-card" data-task="${element.task}" style="background-color:#ef4444;">
-          <div class="task-info">
-            <h3 class="task-title">${element.task}</h3>
-              <p class="task-deadline">
-                  Deadline: ${formalDate}, ${element.deadlineTime}
-              </p>
-          </div>
-          <input type="checkbox" class="complete-task-checkbox">
-        </div>
-        `;
-    } else if (element.priority === "medium") {
-      mediumHTML += `
-        <div class="task-card" data-task="${element.task}" style="background-color:#f59e0b;">
-          <div class="task-info">
-            <h3 class="task-title">${element.task}</h3>
-            <p class="task-deadline">
-                Deadline: ${formalDate}, ${element.deadlineTime}
-            </p>
-          </div>
-          <input type="checkbox" class="complete-task-checkbox">
-        </div>
-        `;
-    } else {
-      lowHTML += `
-        <div class="task-card" data-task="${element.task}" style="background-color:#10b981;">
-          <div class="task-info">
-            <h3 class="task-title">${element.task}</h3>
-            <p class="task-deadline">
-                Deadline: ${formalDate}, ${element.deadlineTime}
-            </p>
-          </div>
-          <input type="checkbox" class="complete-task-checkbox">
-        </div>
-        
-        `;
-    }
-    tasksContainer.innerHTML = `
-    <div id="task-title">
-      <h1>Task</h1>
-      <h3>Tasks Remaining: ${sortedTasks.length}</h1>
-    <div>
-  `;
-    tasksContainer.innerHTML += highHTML;
-    tasksContainer.innerHTML += mediumHTML;
-    tasksContainer.innerHTML += lowHTML;
-    const tasksCheckboxes = document.querySelectorAll(
-      ".complete-task-checkbox"
+    return (
+      new Date(`${a.deadlineDate}T${a.deadlineTime}`) -
+      new Date(`${b.deadlineDate}T${b.deadlineTime}`)
     );
-    tasksCheckboxes.forEach((element) => {
-      element.addEventListener("change", (event) => {
-        if (event.target.checked) {
-          const finishedTask = element.parentElement.dataset.task;
-          const finishedTaskIndex = tasksList.indexOf(
-            tasksList.find((taskElement) => taskElement.task === finishedTask)
-          );
+  });
+}
 
-          setTimeout(() => {
-            tasksList.splice(finishedTaskIndex, 1);
-            localStorage.setItem(
-              "studyPlannerDatabase",
-              JSON.stringify(database)
-            );
-            renderTasks();
-          }, 300);
-        }
-      });
+function renderHoliday() {
+  const holidays = JSON.parse(localStorage.getItem("studyPlannerHolidays")) || {
+    holidays: [],
+  };
+
+  const upcoming = getUpcomingHolidayData(holidays);
+
+  if (!upcoming) {
+    holidaysContainer.innerHTML = `
+      <h1>Upcoming holiday</h1>
+      <h2>No holiday data yet</h2>
+      <p>Your next holiday will appear here when data is available.</p>
+    `;
+    return;
+  }
+
+  holidaysContainer.innerHTML = `
+    <h1>Upcoming holiday</h1>
+    <h2>${escapeHTML(upcoming.name)}</h2>
+    <p>
+      ${upcoming.date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
+    </p>
+  `;
+}
+
+function renderSubjects() {
+  subjectsTitle.hidden = subjectsList.length === 0;
+
+  if (subjectsList.length === 0) {
+    subjectsContainer.innerHTML = `
+      <p class="no-task-notification">
+        No subjects yet. Open Subject Management to create your first one.
+      </p>
+    `;
+    return;
+  }
+
+  subjectsContainer.innerHTML = subjectsList
+    .map((subject) => {
+      const remainingTasks = tasksList.filter(
+        (task) => task.subjectId === subject.id
+      ).length;
+
+      return `
+        <article class="subject-card" style="--subject-color:${escapeHTML(
+          subject.color
+        )}">
+          <h3>${escapeHTML(subject.name)}</h3>
+          <p>${remainingTasks} task${
+        remainingTasks !== 1 ? "s" : ""
+      } remaining</p>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function createTaskCard(task) {
+  const taskName = escapeHTML(task.task);
+  return `
+    <article class="task-card priority-${escapeHTML(
+      task.priority
+    )}" data-task="${taskName}">
+      <div class="task-info">
+        <h3 class="task-title">${taskName}</h3>
+        <p class="task-deadline">Deadline: ${formatDate(
+          task.deadlineDate
+        )}, ${escapeHTML(task.deadlineTime)}</p>
+      </div>
+      <input type="checkbox" class="complete-task-checkbox" aria-label="Mark ${taskName} as complete" />
+    </article>
+  `;
+}
+
+function attachTaskCompletion() {
+  document.querySelectorAll(".complete-task-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("change", (event) => {
+      if (!event.target.checked) return;
+
+      const taskCard = event.target.closest(".task-card");
+      const taskName = taskCard.dataset.task;
+      taskCard.classList.add("completed");
+
+      setTimeout(() => {
+        const finishedTaskIndex = tasksList.findIndex(
+          (task) => task.task === taskName
+        );
+        if (finishedTaskIndex !== -1) tasksList.splice(finishedTaskIndex, 1);
+        localStorage.setItem("studyPlannerDatabase", JSON.stringify(database));
+        renderSubjects();
+        renderTasks();
+      }, 240);
     });
   });
 }
+
+function renderTasks() {
+  const sortedTasks = sortTasksByDeadline();
+
+  if (sortedTasks.length === 0) {
+    tasksContainer.innerHTML = `
+      <div id="task-title">
+        <h1>Tasks</h1>
+        <h3>Nothing due right now</h3>
+      </div>
+      <p class="no-task-notification">
+        You are all caught up. Open Task Management when you are ready to plan the next step.
+      </p>
+    `;
+    return;
+  }
+
+  const groups = [
+    { key: "high", label: "High priority" },
+    { key: "medium", label: "Medium priority" },
+    { key: "low", label: "Low priority" },
+  ];
+
+  tasksContainer.innerHTML = `
+    <div id="task-title">
+      <h1>Tasks</h1>
+      <h3>${sortedTasks.length} task${
+    sortedTasks.length !== 1 ? "s" : ""
+  } remaining</h3>
+    </div>
+    ${groups
+      .map((group) => {
+        const groupTasks = sortedTasks.filter(
+          (task) => task.priority === group.key
+        );
+        return `
+          <section class="tasks-group" id="${group.key}-priority">
+            <div class="task-group-heading">
+              <span>${group.label}</span>
+              <span class="task-count">${groupTasks.length || "None"}</span>
+            </div>
+            ${groupTasks.map(createTaskCard).join("")}
+          </section>
+        `;
+      })
+      .join("")}
+  `;
+
+  attachTaskCompletion();
+}
+
+async function startDashboard() {
+  await holidayReady;
+
+  renderHoliday();
+  renderSubjects();
+  renderTasks();
+}
+
+startDashboard();

@@ -3,76 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title -->
-    <title>Study Planner</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../Assets/favicon.png"
-    />
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="../CSS/settings-style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#15233b" />
+    <title>Settings | Study Planner</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../Assets/favicon.png" />
+    <link rel="stylesheet" href="../CSS/app-shell.css?v=3" />
+    <link rel="stylesheet" href="../CSS/settings-style.css?v=2" />
   </head>
   <body>
-    <nav id="sidebar">
+    <nav id="sidebar" aria-label="Main navigation">
       <div id="brand">
         <img src="../Assets/icon.png" alt="" class="website-logo" />
         <a href="index.html" id="website-name">Study Planner</a>
       </div>
 
       <ul id="nav-list">
-        <li class="nav-item">
-          <a href="dashboard.html" class="nav-link">📊Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a href="subject-management.html" class="nav-link"
-            >📚Subject Management</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="task-management.html" class="nav-link">📋Task Management</a>
-        </li>
-        <li class="nav-item">
-          <a href="settings.html" class="nav-link active">⚙️Settings</a>
-        </li>
+        <li class="nav-item"><a href="dashboard.html" class="nav-link"><span class="nav-icon" aria-hidden="true">&#9638;</span><span>Dashboard</span></a></li>
+        <li class="nav-item"><a href="subject-management.html" class="nav-link"><span class="nav-icon" aria-hidden="true">&#9635;</span><span>Subjects</span></a></li>
+        <li class="nav-item"><a href="task-management.html" class="nav-link"><span class="nav-icon" aria-hidden="true">&#10003;</span><span>Tasks</span></a></li>
+        <li class="nav-item"><a href="settings.html" class="nav-link active" aria-current="page"><span class="nav-icon" aria-hidden="true">&#9881;</span><span>Settings</span></a></li>
       </ul>
     </nav>
-    <div id="main-content">
-      <div id="second-layer-content">
+
+    <main id="main-content">
+      <section id="second-layer-content">
         <div id="page-title"><h1>Settings</h1></div>
         <div class="informations">
           <h1 id="current-email"></h1>
-          <button class="change-btn" id="change-email-btn">✏️</button>
+          <button class="change-btn" id="change-email-btn" type="button">Edit</button>
         </div>
         <div class="informations">
           <h1 id="current-password"></h1>
-          <button class="change-btn" id="change-password-btn">✏️</button>
+          <button class="change-btn" id="change-password-btn" type="button">Edit</button>
         </div>
         <div id="logout">
-          <button id="logout-btn">Log Out</button>
+          <button id="logout-btn" type="button">Log Out</button>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
+
     <div id="modal-overlay" class="hidden">
-      <div id="modal">
+      <div id="modal" role="dialog" aria-modal="true" aria-labelledby="current-information">
         <div class="informations">
           <h1 id="current-information"></h1>
         </div>
-        <input type="text" placeholder="" id="new-info-input" />
+        <input type="text" placeholder="Enter a new value" id="new-info-input" aria-label="New account information" />
         <div class="cancel-save">
-          <button class="cancel-save-btn" id="cancel-btn">Cancel</button>
-          <button class="cancel-save-btn" id="save-btn">Save</button>
+          <button class="cancel-save-btn" id="cancel-btn" type="button">Cancel</button>
+          <button class="cancel-save-btn" id="save-btn" type="button">Save</button>
         </div>
       </div>
     </div>
-    <script src="../JS/settings.js"></script>
+
+    <script src="../JS/settings.js?v=2"></script>
   </body>
 </html>

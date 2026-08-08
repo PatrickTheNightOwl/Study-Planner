@@ -2,7 +2,9 @@ const currentUserContainer = document.getElementById("currentUser");
 const getStartedNavigation = document.getElementById("cta");
 
 const currentUserId = Number(localStorage.getItem("currentUserId"));
-const database = JSON.parse(localStorage.getItem("studyPlannerDatabase"));
+const database = JSON.parse(localStorage.getItem("studyPlannerDatabase")) || {
+  users: [],
+};
 
 const currentUser = database.users.find((user) => user.id === currentUserId);
 
@@ -24,7 +26,9 @@ if (currentUser) {
     `;
 }
 const logOutButton = document.getElementById("btn-logout");
-logOutButton.addEventListener("click", () => {
-  localStorage.removeItem("currentUserId");
-  window.location.replace("index.html");
-});
+if (logOutButton) {
+  logOutButton.addEventListener("click", () => {
+    localStorage.removeItem("currentUserId");
+    window.location.replace("index.html");
+  });
+}
